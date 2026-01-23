@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetPokemonService implements GetPokemon {
-    private LoadPokemon loadPokemon;
+    private final LoadPokemon loadPokemon;
 
     @Autowired
     public GetPokemonService( LoadPokemon loadPokemon) {
