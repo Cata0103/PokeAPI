@@ -1,8 +1,8 @@
-package com.backend.adapters.out;
+package com.proyect.pokedex.adapters.out;
 
-import com.backend.application.ports.in.GetPokemonCommand;
-import com.backend.application.ports.out.LoadPokemon;
-import com.backend.domain.Pokemon;
+import com.proyect.pokedex.application.ports.in.GetPokemonCommand;
+import com.proyect.pokedex.application.ports.out.LoadPokemon;
+import com.proyect.pokedex.domain.entities.Pokemon;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import tools.jackson.databind.JsonNode;

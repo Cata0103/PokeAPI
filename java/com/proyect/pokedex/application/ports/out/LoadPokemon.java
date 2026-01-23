@@ -1,10 +1,11 @@
-package com.backend.application.ports.out;
+package com.proyect.pokedex.application.ports.out;
 
-import com.backend.application.ports.in.GetPokemonCommand;
-import com.backend.domain.Pokemon;
+import com.proyect.pokedex.application.ports.in.GetPokemonCommand;
+import com.proyect.pokedex.domain.entities.Pokemon;
 import org.springframework.stereotype.Repository;
 import tools.jackson.databind.JsonNode;
-
+import java.util.List;
+import java.util.Map;
 @Repository
 public interface LoadPokemon {
     Pokemon loadPokemonByName(GetPokemonCommand command);

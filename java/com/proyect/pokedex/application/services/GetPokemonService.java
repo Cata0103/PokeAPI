@@ -1,12 +1,14 @@
-package com.backend.application.services;
+package com.proyect.pokedex.application.services;
 
-import com.backend.application.ports.in.GetPokemon;
-import com.backend.application.ports.in.GetPokemonCommand;
-import com.backend.application.ports.out.LoadPokemon;
-import com.backend.domain.Pokemon;
+import com.proyect.pokedex.application.ports.in.GetPokemon;
+import com.proyect.pokedex.application.ports.in.GetPokemonCommand;
+import com.proyect.pokedex.application.ports.out.LoadPokemon;
+import com.proyect.pokedex.domain.entities.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.client.RestTemplate;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 @Service
 public class GetPokemonService implements GetPokemon {
     private LoadPokemon loadPokemon;

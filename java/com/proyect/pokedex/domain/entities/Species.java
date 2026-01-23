@@ -1,12 +1,10 @@
-package com.backend.domain;
+package com.proyect.pokedex.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 
 import java.util.Set;
 import java.util.TreeSet;
 
-@Getter
 public class Species {
     private String name;
     @JsonProperty("evolution_chain")
@@ -15,4 +13,19 @@ public class Species {
     private String evolvesFromSpecies;
     private final Set<String> varieties = new TreeSet<String>();
 
+    public String getName() {
+        return name;
+    }
+
+    public Evolution getEvolution() {
+        return evolution;
+    }
+
+    public Set<String> getVarieties() {
+        return varieties;
+    }
+
+    public String getEvolvesFromSpecies() {
+        return evolvesFromSpecies;
+    }
 }

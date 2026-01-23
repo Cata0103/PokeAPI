@@ -1,4 +1,4 @@
-package com.backend.application.ports.in;
+package com.proyect.pokedex.application.ports.in;
 
 import lombok.Getter;
 

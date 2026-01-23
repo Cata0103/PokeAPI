@@ -1,8 +1,8 @@
-package com.backend.adapters.in;
+package com.proyect.pokedex.adapters.in;
 
-import com.backend.application.ports.in.GetPokemonCommand;
-import com.backend.application.services.GetPokemonService;
-import com.backend.domain.Pokemon;
+import com.proyect.pokedex.application.ports.in.GetPokemonCommand;
+import com.proyect.pokedex.application.services.GetPokemonService;
+import com.proyect.pokedex.domain.entities.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,4 +22,3 @@ public class GetPokemonController {
         return getPokemon.getPokemonByName(command);
     }
 }
-

@@ -1,4 +1,4 @@
-package com.backend.domain;
+package com.proyect.pokedex.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
