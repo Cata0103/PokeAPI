@@ -14,5 +14,4 @@ public class Species {
     @JsonProperty("evolves_from_species")
     private String evolvesFromSpecies;
     private final Set<String> varieties = new TreeSet<String>();
-
 }

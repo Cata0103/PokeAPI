@@ -1,6 +1,6 @@
 package com.backend.adapters.out;
 
-import com.backend.application.ports.in.GetPokemonCommand;
+import com.backend.application.ports.in.Command;
 import com.backend.application.ports.out.LoadPokemon;
 import com.backend.domain.Pokemon;
 import org.springframework.stereotype.Repository;
@@ -32,8 +32,8 @@ public class LoadPokemonController implements LoadPokemon {
         }
     }
     @Override
-    public Pokemon loadPokemonByName(GetPokemonCommand command) {
-        String url = "https://pokeapi.co/api/v2/pokemon/" + command.getName();
+    public Pokemon loadPokemonByName(Command command) {
+        String url = command.url() + command.domain() + "/" + command.name();
         String pokemonJSON = restTemplate.getForObject(url, String.class);
         Pokemon pokemon = mapper.readValue(pokemonJSON, Pokemon.class);
         Map<String,String> elementsArray = Map.of("abilities", "ability","types", "type", "forms", "");
@@ -41,7 +41,12 @@ public class LoadPokemonController implements LoadPokemon {
             loadPokemonElementsList(mapper.readTree(pokemonJSON).path(element.getKey()), element.getValue(), pokemon);
         }
         loadPokemonElementsMap(mapper.readTree(pokemonJSON).path("stats"), "name", pokemon);
-        pokemon.setSpecies(mapper.readTree(pokemonJSON).path("species").path("name").asString());
+        pokemon.setFrontOfficialArtwork(mapper.readTree(pokemonJSON).path("sprites")
+                .path("other")
+                .path("official-artwork")
+                .path("front_default").asString());
+        pokemon.setSpecies(mapper.readTree(pokemonJSON).path("species")
+                .path("name").asString());
         return pokemon;
     }
 }

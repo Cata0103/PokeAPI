@@ -1,7 +1,7 @@
 package com.backend.application.services;
 
 import com.backend.application.ports.in.GetPokemon;
-import com.backend.application.ports.in.GetPokemonCommand;
+import com.backend.application.ports.in.Command;
 import com.backend.application.ports.out.LoadPokemon;
 import com.backend.domain.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class GetPokemonService implements GetPokemon {
     }
 
     @Override
-    public Pokemon getPokemonByName(GetPokemonCommand command) {
+    public Pokemon getPokemonByName(Command command) {
         return loadPokemon.loadPokemonByName(command);
     }
 

@@ -20,6 +20,8 @@ public class Pokemon {
     private Cries cries;
     @JsonProperty("pokemon_species")
     private String species;
+    @JsonProperty("front_official_artwork")
+    private String frontOfficialArtwork;
     @JsonProperty("pokemon_forms")
     private Set<String> forms = new TreeSet<>();
     @JsonProperty("pokemon_stats")

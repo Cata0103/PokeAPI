@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class PokemonForm {
-    private int id;
     private String name;
-    private Sprites sprite;
+    private Sprites sprites;
 }

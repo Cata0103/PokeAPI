@@ -1,6 +1,6 @@
 package com.backend.adapters.in;
 
-import com.backend.application.ports.in.GetPokemonCommand;
+import com.backend.application.ports.in.Command;
 import com.backend.application.services.GetPokemonService;
 import com.backend.domain.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ public class GetPokemonController {
     public  GetPokemonController(GetPokemonService getPokemon) {
         this.getPokemon = getPokemon;
     }
-    @GetMapping(value = "/pokemon/{nombre}")
-    public Pokemon getPokemon(@PathVariable String nombre) {
-        GetPokemonCommand command = new GetPokemonCommand(nombre);
+    @GetMapping(value = "/{domain}/{name}")
+    public Pokemon getPokemon(@PathVariable String name, @PathVariable String domain) {
+        Command command = new Command(name, domain,"https://pokeapi.co/api/v2/");
         return getPokemon.getPokemonByName(command);
     }
 }
