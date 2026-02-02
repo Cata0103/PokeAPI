@@ -1,17 +1,18 @@
 package com.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import lombok.Data;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Map;
+import java.util.TreeMap;
 
-@Getter
+@Data
 public class Species {
-    private String name;
-    @JsonProperty("evolution_chain")
-    private Evolution evolution;
-    @JsonProperty("evolves_from_species")
-    private String evolvesFromSpecies;
-    private final Set<String> varieties = new TreeSet<String>();
+    @JsonProperty("pokemon_evolution")
+    private Evolution pokemonEvolution;
+    @JsonProperty("varieties_list")
+    private final Map<String, String> varietiesList = new TreeMap<>();
+    public void addVariety(String variety, String url) {
+        varietiesList.put(variety, url);
+    }
 }

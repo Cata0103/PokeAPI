@@ -2,7 +2,7 @@ package com.backend.adapters.in;
 
 
 import com.backend.application.ports.in.Command;
-import com.backend.application.services.SearchService;
+import com.backend.application.ports.in.GetSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,14 +14,24 @@ import java.util.Map;
 @RestController
 @RequestMapping("/pokedex/")
 public class GetSearchController {
-    private final SearchService searchService;
+    private final GetSearch getSearch;
     @Autowired
-    public GetSearchController(SearchService searchService) {
-        this.searchService = searchService;
+    public GetSearchController( GetSearch getSearch) {
+        this.getSearch = getSearch;
     }
     @GetMapping(value = "/search/{domain}/{element}")
     public Map<String,String> getSearch(@PathVariable String element, @PathVariable String domain) {
-        Command command = new Command(element, domain, "https://pokeapi.co/api/v2/");
-        return searchService.getSearch(command);
+        Command command = new Command(element, domain, "https://pokeapi.co/api/v2/", "", "");
+        return getSearch.getPokemonSearch(command);
+    }
+    @GetMapping(value = "/search/{domain}/{offset}/{limit}")
+    public Map<String, String> getSearchPaginated(@PathVariable String domain, @PathVariable String offset, @PathVariable String limit) {
+        Command command = new Command("", domain, "https://pokeapi.co/api/v2/", offset, limit);
+        return getSearch.getPokemonSearch(command);
+    }
+    @GetMapping(value = "/search/pokemon-sprite/{name}")
+    public Map<String, String> getSearchByName(@PathVariable String name) {
+        Command command = new Command(name,"pokemon-sprite","https://pokeapi.co/api/v2/", "", "");
+        return getSearch.getPokemonSearch(command);
     }
 }

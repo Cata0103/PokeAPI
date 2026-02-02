@@ -18,7 +18,7 @@ public class SearchService implements GetSearch {
     }
 
     @Override
-    public Map<String,String> getSearch(Command command){
+    public Map<String,String> getPokemonSearch(Command command){
         return loadSearch.loadSearch(command);
     }
 }

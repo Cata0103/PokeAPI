@@ -1,6 +1,7 @@
 package com.backend.adapters.in;
 
 import com.backend.application.ports.in.Command;
+import com.backend.application.ports.in.GetPokemonForm;
 import com.backend.application.services.GetPokemonFormService;
 import com.backend.domain.PokemonForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,26 +15,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/pokedex/")
 public class GetPokemonFormController {
-    private final GetPokemonFormService getPokemonFormService;
+    private final GetPokemonForm getPokemonForm;
     @Autowired
-    public GetPokemonFormController(GetPokemonFormService getPokemonFormService) {
-        this.getPokemonFormService = getPokemonFormService;
+    public GetPokemonFormController(GetPokemonFormService getPokemonForm) {
+        this.getPokemonForm = getPokemonForm;
     }
 
     @GetMapping(value = "/pokemon-form/{name}")
     public List<PokemonForm> getPokemonForm( @PathVariable String name){
-        Command command = new Command(name, "pokemon", "https://pokeapi.co/api/v2/");
-        return getPokemonFormService.getPokemonForm(command);
+        Command command = new Command(name, "pokemon", "https://pokeapi.co/api/v2/", "", "");
+        return getPokemonForm.getPokemonForm(command);
     }
 }
-//    private final GetPokemonFormService getPokemonFormService;
-//    @Autowired
-//    public GetPokemonFormController(GetPokemonFormService getPokemonFormService) {
-//        this.getPokemonFormService = getPokemonFormService;
-//    }
-//
-//    @GetMapping(value = "/{domain}/{name}")
-//    public List<PokemonForm> getPokemonForm(@PathVariable String domain, @PathVariable String name) {
-//        Command command = new Command(name, domain, "https://pokeapi.co/api/v2/");
-//        return getPokemonFormService.getPokemonForm(command);
-//    }
